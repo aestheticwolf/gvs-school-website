@@ -1,3 +1,11 @@
+<?php
+include '../includes/db.php';
+
+$query = "SELECT * FROM blogs WHERE status='Published' ORDER BY created_at DESC";
+$result = mysqli_query($conn, $query);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +51,7 @@
       <a href="about.html" class="nav-link">About</a>
       <a href="curriculum.html" class="nav-link">Curriculum</a>
       <a href="gallery.html" class="nav-link">Gallery</a>
-      <a href="blog.html" class="nav-link active">Blogs</a>
+      <a href="blog.php" class="nav-link active">Blogs</a>
     </nav>
 
   </div>
@@ -72,140 +80,68 @@
     </div>
 
 
-    <div class="blog-grid">
+  <div class="blog-grid">
 
+<?php if(mysqli_num_rows($result) > 0): ?>
 
-      <!-- BLOG CARD 1 -->
+  <?php while($row = mysqli_fetch_assoc($result)): ?>
 
-  <a href="blog-single.html" class="blog-link">
+    <a href="blog-single.php?id=<?php echo $row['id']; ?>" class="blog-link">
 
-  <div class="blog-card" data-aos="fade-up">
-
-    <div class="blog-img">
-      <img src="assets/images/dummy-blog.jpg" alt="Annual Day">
-    </div>
-
-    <div class="blog-content">
-
-      <div class="blog-meta">
-        <span><i class="fa-solid fa-user"></i> Admin</span>
-        <span><i class="fa-solid fa-calendar"></i> Jan 15, 2026</span>
-      </div>
-
-      <h3>Annual Day Celebration 2026</h3>
-
-      <p>
-        Our Annual Day was celebrated with cultural programs,
-        performances and student achievements.
-      </p>
-
-      <span class="blog-btn">
-        Read More <i class="fa-solid fa-arrow-right"></i>
-      </span>
-
-    </div>
-
-  </div>
-
-</a>
-
-
-      <!-- BLOG CARD 2 -->
-
-      <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="blog-card" data-aos="fade-up">
 
         <div class="blog-img">
-          <img src="assets/images/dummy-blog.jpg" alt="Sports Day">
-        </div>
+
+<?php if(!empty($row['image'])): ?>
+    <img src="uploads/blogs/<?php echo $row['image']; ?>" 
+         alt="<?php echo $row['title']; ?>">
+<?php else: ?>
+    <img src="assets/images/default-blog.jpg" 
+         alt="Default Image">
+<?php endif; ?>
+
+</div>     
 
         <div class="blog-content">
 
           <div class="blog-meta">
-            <span><i class="fa-solid fa-user"></i> Admin</span>
-            <span><i class="fa-solid fa-calendar"></i> Feb 02, 2026</span>
+            <span>
+              <i class="fa-solid fa-user"></i>
+              <?php echo $row['author']; ?>
+            </span>
+
+            <span>
+              <i class="fa-solid fa-calendar"></i>
+              <?php echo date("M d, Y", strtotime($row['created_at'])); ?>
+            </span>
           </div>
 
-          <h3>Sports Day Activities</h3>
+          <h3><?php echo $row['title']; ?></h3>
 
           <p>
-            Students participated enthusiastically in sports events,
-            showing teamwork and leadership.
+            <?php echo substr($row['content'], 0, 120); ?>...
           </p>
 
-          <a href="#" class="blog-btn">
+          <span class="blog-btn">
             Read More <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          </span>
 
         </div>
 
       </div>
 
+    </a>
 
-      <!-- BLOG CARD 3 -->
+  <?php endwhile; ?>
 
-      <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+<?php else: ?>
 
-        <div class="blog-img">
-          <img src="assets/images/dummy-blog.jpg" alt="Workshop">
-        </div>
+  <p>No blogs found.</p>
 
-        <div class="blog-content">
+<?php endif; ?>
 
-          <div class="blog-meta">
-            <span><i class="fa-solid fa-user"></i> Teacher</span>
-            <span><i class="fa-solid fa-calendar"></i> Mar 10, 2026</span>
-          </div>
+</div>
 
-          <h3>Teacher Training Workshop</h3>
-
-          <p>
-            A workshop was conducted to improve teaching methods
-            and digital learning.
-          </p>
-
-          <a href="#" class="blog-btn">
-            Read More <i class="fa-solid fa-arrow-right"></i>
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- BLOG CARD 4 -->
-
-      <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
-
-        <div class="blog-img">
-          <img src="assets/images/dummy-blog.jpg" alt="Science Fair">
-        </div>
-
-        <div class="blog-content">
-
-          <div class="blog-meta">
-            <span><i class="fa-solid fa-user"></i> Admin</span>
-            <span><i class="fa-solid fa-calendar"></i> Apr 05, 2026</span>
-          </div>
-
-          <h3>Science Exhibition 2026</h3>
-
-          <p>
-            Students displayed innovative science projects
-            and experiments.
-          </p>
-
-          <a href="#" class="blog-btn">
-            Read More <i class="fa-solid fa-arrow-right"></i>
-          </a>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </div>
 
 </section>
 
