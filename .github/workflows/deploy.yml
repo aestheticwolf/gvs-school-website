@@ -8,19 +8,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: 🚀 Deploy via FTP
+      - name: Deploy via FTP (InfinityFree)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          local-dir: ./                 # Upload entire repo
-          server-dir: /htdocs/          # InfinityFree web root
+          local-dir: ./
+          server-dir: /htdocs/
           exclude: |
             .git/
             .github/
             README.md
             .gitignore
+          concurrency: true
