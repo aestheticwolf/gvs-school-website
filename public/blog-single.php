@@ -47,7 +47,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     </div>
 
     <nav class="nav-menu">
-      <a href="index.html" class="nav-link">Home</a>
+      <a href="index.php" class="nav-link">Home</a>
       <a href="blog.php" class="nav-link active">Blogs</a>
     </nav>
 

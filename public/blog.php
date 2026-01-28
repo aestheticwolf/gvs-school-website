@@ -47,10 +47,11 @@ $result = mysqli_query($conn, $query);
     </div>
 
     <nav class="nav-menu">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="curriculum.html" class="nav-link">Curriculum</a>
-      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="index.php" class="nav-link">Home</a>
+      <a href="about.php" class="nav-link">About</a>
+      <a href="curriculum.php" class="nav-link">Curriculum</a>
+      <a href="gallery.php" class="nav-link">Gallery</a>
+      <a href="events.php" class="nav-link">Events</a>
       <a href="blog.php" class="nav-link active">Blogs</a>
     </nav>
 
@@ -147,6 +148,7 @@ $result = mysqli_query($conn, $query);
 
 
 
+
 <!-- FOOTER -->
 
 <footer class="footer">
@@ -161,10 +163,10 @@ $result = mysqli_query($conn, $query);
     <div class="footer-col">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="curriculum.html">Curriculum</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="curriculum.php">Curriculum</a></li>
+        <li><a href="gallery.php">Gallery</a></li>
       </ul>
     </div>
 

@@ -77,87 +77,181 @@ if (isset($_POST['update'])) {
 
 
 <style>
+
 body{
-    font-family: Arial;
-    padding: 20px;
+  font-family:'Poppins',Arial,sans-serif;
+  background:#f5f7fb;
+  margin:0;
 }
 
-input, textarea, select{
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
+/* Header */
+
+.header{
+  background:linear-gradient(135deg,#143d7a,#4f8fd8);
+  color:white;
+  padding:18px;
+  text-align:center;
+  font-size:20px;
 }
+
+/* Container */
+
+.page{
+  max-width:900px;
+  margin:30px auto;
+  padding:20px;
+}
+
+/* Form Box */
+
+.box{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Inputs */
+
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:8px;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  outline:none;
+  border-color:#4f8fd8;
+}
+
+/* Button */
 
 button{
-    padding: 10px 20px;
-    background: green;
-    color: white;
-    border: none;
-    cursor: pointer;
+  padding:12px 22px;
+  background:#143d7a;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
 }
 
-img{
-    max-width:200px;
-    display:block;
-    margin-bottom:10px;
+button:hover{
+  background:#4f8fd8;
 }
+
+/* Image */
+
+.preview{
+  margin:15px 0;
+}
+
+.preview img{
+  max-width:220px;
+  border-radius:10px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Back */
+
+.back{
+  display:inline-block;
+  margin-top:15px;
+  color:#143d7a;
+  text-decoration:none;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<h2>Edit Blog</h2>
+<div class="header">
+  Edit Blog
+</div>
+
+<div class="page">
+
+<div class="box">
 
 <form method="POST" enctype="multipart/form-data">
 
-    <input type="text" name="title"
-           value="<?php echo $blog['title']; ?>" required>
+<label>Title</label>
 
-    <textarea name="content" id="editor" required>
-<?php echo htmlspecialchars($blog['content']); ?>
+<input type="text" name="title"
+       value="<?= htmlspecialchars($blog['title']); ?>"
+       required>
+
+
+<label>Content</label>
+
+<textarea name="content" id="editor" required>
+<?= htmlspecialchars($blog['content']); ?>
 </textarea>
 
 
-    <p>Current Image:</p>
+<div class="preview">
 
-    <?php if(!empty($blog['image'])): ?>
-        <img src="../../public/uploads/blogs/<?php echo $blog['image']; ?>">
-    <?php endif; ?>
+<p>Current Image:</p>
 
+<?php if(!empty($blog['image'])): ?>
 
-    <label>Change Image (optional)</label>
-    <input type="file" name="image">
+<img src="../../public/uploads/blogs/<?= $blog['image']; ?>">
 
+<?php else: ?>
 
-    <select name="status">
+<p>No image uploaded</p>
 
-        <option value="Draft"
-        <?php if($blog['status']=="Draft") echo "selected"; ?>>
-        Draft
-        </option>
+<?php endif; ?>
 
-        <option value="Published"
-        <?php if($blog['status']=="Published") echo "selected"; ?>>
-        Published
-        </option>
-
-    </select>
+</div>
 
 
-    <button type="submit" name="update">
-        Update Blog
-    </button>
+<label>Change Image</label>
+
+<input type="file" name="image">
+
+
+<label>Status</label>
+
+<select name="status">
+
+<option value="Draft"
+<?php if($blog['status']=="Draft") echo "selected"; ?>>
+Draft
+</option>
+
+<option value="Published"
+<?php if($blog['status']=="Published") echo "selected"; ?>>
+Published
+</option>
+
+</select>
+
+
+<br><br>
+
+<button type="submit" name="update">
+Update Blog
+</button>
 
 </form>
 
-<br>
 
-<a href="index.php">← Back</a>
+<a href="index.php" class="back">← Back to Blogs</a>
+
+</div>
+
+</div>
 
 <script>
 CKEDITOR.replace('editor');
 </script>
 
-
 </body>
+
 </html>

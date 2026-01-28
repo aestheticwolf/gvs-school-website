@@ -963,7 +963,7 @@ body {
 
 /* ================= NEW HERO ================= */
 
-.hero-new {
+/* .hero-new {
   height: 90vh;
 
   background:
@@ -974,16 +974,8 @@ body {
   display: flex;
   align-items: center;
   color: white;
-}
+} */
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(0,0,0,0.7),
-    rgba(0,0,0,0.6)
-  );
-}
 
 .hero-box {
   position: relative;
@@ -1117,25 +1109,13 @@ body {
   color: #555;
 }
 
-/* ================= HERO NEW ================= */
-
-.hero-new {
-  position: relative;
-  min-height: 90vh;
-  background: url("../images/hero-bg.jpg") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  color: #fff;
-}
-
 .hero-overlay {
-  position: absolute;
-  inset: 0;
   background: linear-gradient(
     rgba(0,0,0,0.7),
     rgba(0,0,0,0.5)
   );
 }
+
 
 .hero-new .container {
   position: relative;
@@ -2158,6 +2138,395 @@ border-radius: 8px;
   border-radius: 10px;
   margin: 20px 0;
 }
+
+.live-campus iframe {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.fb-box {
+  max-width: 800px;
+  margin: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* ================= FACEBOOK LIVE FIX ================= */
+
+.fb-wrapper {
+  max-width: 900px;
+  height: 450px;
+
+  margin: auto;
+
+  background: #fff;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fb-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+.hero-new {
+  position: relative;
+  min-height: 90vh;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  transition: background-image 1.5s ease-in-out;
+  margin-top: 80px;
+
+}
+
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:20px;
+}
+
+.hero-box{
+  max-width: 900px;
+  margin: auto;
+
+  text-align: center;
+
+  padding: 120px 20px 80px;
+
+  color: #fff;
+
+  position: relative;
+}
+
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(34, 61, 212, 0.421)
+  );
+}
+
+/* Thought of the Day */
+
+.thought-box{
+  max-width: 800px;
+  margin: auto;
+
+  background: linear-gradient(135deg,#f8fbff,#eef4ff);
+
+  padding: 40px 30px;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.thought-box i{
+  font-size: 35px;
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+
+.thought-text{
+  font-size: 18px;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.thought-author{
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* EVENTS PAGE */
+
+.events-page{
+  background:#f9fbff;
+}
+
+.event-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+  margin-top:35px;
+}
+
+.event-card{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  transition:.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.event-card:hover{
+  transform:translateY(-10px);
+}
+
+.event-date{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:#143d7a;
+  color:white;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.event-card h3{
+  margin-bottom:10px;
+  color:#143d7a;
+}
+
+.event-card p{
+  font-size:14px;
+  color:#555;
+  line-height:1.6;
+}
+
+/* MAIN BUTTON */
+
+.btn-main{
+  display:inline-block;
+  background:#143d7a;
+  color:white;
+  padding:12px 28px;
+  border-radius:30px;
+  text-decoration:none;
+  font-size:14px;
+  transition:.3s;
+}
+
+.btn-main:hover{
+  background:#4f8fd8;
+  transform:scale(1.05);
+}
+
+/* Events */
+
+.event-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+
+.event-card{
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 6px 20px rgba(0,0,0,.1);
+  transition:.3s;
+}
+
+.event-card:hover{
+  transform:translateY(-6px);
+}
+
+.event-img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.event-date{
+  background:#143d7a;
+  color:#fff;
+  padding:6px 12px;
+  font-size:13px;
+  display:inline-block;
+  margin:10px;
+  border-radius:6px;
+}
+
+.event-card h3{
+  padding:0 15px;
+}
+
+.event-card p{
+  padding:0 15px 20px;
+  color:#555;
+}
+
+/* EVENTS PAGE */
+
+.event-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap:25px;
+  margin-top:30px;
+}
+
+.event-card{
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  transition:0.3s;
+  position:relative;
+}
+
+.event-card:hover{
+  transform:translateY(-6px);
+}
+
+.event-img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  display:block;
+}
+
+.event-date{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:#143d7a;
+  color:#fff;
+  padding:5px 10px;
+  border-radius:6px;
+  font-size:12px;
+}
+
+.event-card h3{
+  padding:15px 15px 5px;
+  font-size:18px;
+  color:#143d7a;
+}
+
+.event-card p{
+  padding:0 15px 20px;
+  font-size:14px;
+  color:#555;
+  line-height:1.5;
+}
+
+/* EVENTS GRID */
+
+.event-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* Event Card */
+
+.event-card{
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+  transition: .3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-card:hover{
+  transform: translateY(-6px);
+}
+
+/* Event Image */
+
+.event-img{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Content */
+
+.event-content{
+  padding: 15px;
+  flex: 1;
+}
+
+.event-content h3{
+  margin: 8px 0;
+  font-size: 18px;
+  color: #143d7a;
+}
+
+.event-content p{
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Date */
+
+.event-date{
+  display: inline-block;
+  background: #143d7a;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+
+/* BLOG CARD IMAGE */
+
+.blog-img{
+  width:100%;
+  height:220px;
+  overflow:hidden;
+}
+
+.blog-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* BLOG CARD IMAGE */
+
+.blog-img{
+  width:100%;
+  height:220px;
+  overflow:hidden;
+}
+
+.blog-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
