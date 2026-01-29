@@ -79,7 +79,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <!-- PAGE HERO -->
 
-<section class="page-hero">
+<section class="page-hero"
+style="
+background-image:
+linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url('assets/images/events-hero.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+">
+
 
 <div class="container" data-aos="fade-up">
 

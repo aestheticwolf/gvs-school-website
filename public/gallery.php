@@ -60,7 +60,16 @@ $result = mysqli_query($conn,
 
 <!-- PAGE HERO -->
 
-<section class="page-hero">
+<section class="page-hero"
+style="
+background-image:
+linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url('assets/images/gallery-hero.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+">
+
 
   <div class="container" data-aos="fade-up">
 

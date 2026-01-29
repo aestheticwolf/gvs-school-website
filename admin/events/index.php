@@ -144,18 +144,6 @@ No Image
 </tr>
 
 
-<td>
-
-<a href="delete.php?id=<?= $row['id'] ?>"
-   class="btn del"
-   onclick="return confirm('Delete this event?')">
-   Delete
-</a>
-
-</td>
-
-</tr>
-
 <?php endwhile; ?>
 
 <?php else: ?>
