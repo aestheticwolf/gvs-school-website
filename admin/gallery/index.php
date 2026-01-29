@@ -262,6 +262,33 @@ button:hover{
   text-decoration:underline;
 }
 
+
+/* Buttons */
+
+.btn{
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  background:#143d7a;
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  transition:.3s;
+  cursor:pointer;
+}
+
+.btn:hover{
+  background:#4f8fd8;
+}
+
+.btn-danger{
+  background:#e74c3c;
+}
+
+.btn-danger:hover{
+  background:#c0392b;
+}
+
 /* Animation */
 
 @keyframes fadeUp{
@@ -288,7 +315,7 @@ button:hover{
 
 <div class="page">
 
-<a href="../dashboard.php" class="back">
+<a href="../dashboard.php" class="btn">
 ← Back to Dashboard
 </a>
 

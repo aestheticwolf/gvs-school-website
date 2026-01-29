@@ -24,6 +24,26 @@ while($row = mysqli_fetch_assoc($result)){
   <!-- Main CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 
+<style>
+/* Sticky footer fix for curriculum page */
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-wrapper {
+  flex: 1;
+}
+</style>
+
+
+
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -34,6 +54,8 @@ while($row = mysqli_fetch_assoc($result)){
 </head>
 
 <body>
+
+
 
 <!-- SCROLL BAR -->
 <div id="progress-bar"></div>
@@ -150,6 +172,8 @@ while($row = mysqli_fetch_assoc($result)){
 
 </div>
 
+
+</div>
 
 
 <!-- FOOTER -->

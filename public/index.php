@@ -486,9 +486,6 @@ AOS.init({
 });
 </script>
 
-
-</body>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 

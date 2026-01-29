@@ -224,6 +224,8 @@ body{
     <a href="staff/">👩‍🏫 Staff</a>
     <a href="events/">📅 Events</a>
     <a href="pages/">📄 Pages</a>
+    <a href="about/">ℹ️ About Page</a>
+
 
     <hr style="border:1px solid rgba(255,255,255,0.2);margin:15px;">
 
@@ -263,7 +265,7 @@ body{
         <p>Manage courses</p>
       </a>
 
-      <a href="staff/" class="card">
+         <a href="staff/" class="card">
         <h3>👩‍🏫 Staff</h3>
         <p>Manage teachers</p>
       </a>
@@ -272,10 +274,11 @@ body{
         <h3>📅 Events</h3>
         <p>Manage events</p>
       </a>
-
-      <a href="pages/" class="card">
-        <h3>📄 Pages</h3>
-        <p>Edit website pages</p>
+        
+     
+      <a href="about/" class="card">
+      <h3>ℹ️ About Pages</h3>
+        <p>Edit about page</p>
       </a>
 
       <a href="#" class="card">

@@ -1,6 +1,11 @@
 <?php
 include "../includes/db.php";
 
+/* Fetch About Content */
+$about = mysqli_fetch_assoc(
+    mysqli_query($conn,"SELECT * FROM about_content LIMIT 1")
+);
+
 /* Fetch Staff */
 $res = mysqli_query($conn,"SELECT * FROM staff ORDER BY section");
 
@@ -150,9 +155,8 @@ Today GVS School focuses on holistic development.
 <h3>Our Vision</h3>
 
 <p>
-To nurture responsible citizens.
+<?= $about['mission'] ?>
 </p>
-
 </div>
 
 
@@ -193,28 +197,27 @@ Quality education with NEP 2020 standards.
 <div class="card" data-aos="zoom-in">
 
 <h3>President</h3>
-<p>Dr. S. S. Hinde</p>
+<p><?= $about['president'] ?></p>
 
 </div>
 
 <div class="card" data-aos="zoom-in" data-aos-delay="100">
 
 <h3>Secretary</h3>
-<p>Name Here</p>
+<p><?= $about['secretary'] ?></p>
 
 </div>
 
 <div class="card" data-aos="zoom-in" data-aos-delay="200">
 
 <h3>Treasurer</h3>
-<p>Name Here</p>
+<p><?= $about['treasurer'] ?></p>
 
 </div>
-
 <div class="card" data-aos="zoom-in" data-aos-delay="300">
 
 <h3>Member</h3>
-<p>Name Here</p>
+<p><?= $about['member'] ?></p>
 
 </div>
 
