@@ -12,20 +12,6 @@ $res = mysqli_query($conn,"SELECT * FROM home_content LIMIT 1");
 $data = mysqli_fetch_assoc($res);
 
 
-/* Upload Hero Images */
-function uploadHero($file){
-    if($file['name']!=""){
-        $name = time()."_".$file['name'];
-        move_uploaded_file(
-            $file['tmp_name'],
-            "../../public/assets/images/".$name
-        );
-        return $name;
-    }
-    return "";
-}
-
-
 /* Reset */
 if(isset($_POST['reset'])){
 
@@ -71,31 +57,59 @@ if(isset($_POST['save'])){
     $fb_link = $_POST['facebook_link'];
     $ig_link = $_POST['instagram_link'];
 
-    $img1 = uploadHero($_FILES['hero1']);
-    $img2 = uploadHero($_FILES['hero2']);
-    $img3 = uploadHero($_FILES['hero3']);
+    /* HERO IMAGES */
+$oldImgs = json_decode($data['hero_images'], true);
+if(!is_array($oldImgs)) $oldImgs = [];
+
+$newImgs = [];
+
+if(!empty($_FILES['hero_images']['name'][0])){
+
+  foreach($_FILES['hero_images']['tmp_name'] as $k=>$tmp){
+
+    if(count($oldImgs) + count($newImgs) >= 6){
+      break;
+    }
+
+    if($_FILES['hero_images']['error'][$k] != 0) continue;
+
+    $ext = pathinfo($_FILES['hero_images']['name'][$k], PATHINFO_EXTENSION);
+
+    $name = uniqid("hero_",true).".".$ext;
+
+    $dest = "../../public/assets/images/".$name;
+
+    if(move_uploaded_file($tmp,$dest)){
+      $newImgs[] = $name;
+    }
+  }
+}
+
+$allImgs = array_slice(array_merge($oldImgs,$newImgs),0,6);
+
+$jsonImgs = mysqli_real_escape_string($conn,json_encode($allImgs));
 
 
-    mysqli_query($conn,"UPDATE home_content SET
 
-    hero_managed='$hero_managed',
-    hero_title='$hero_title',
-    hero_subtitle='$hero_subtitle',
-    hero_tagline='$hero_tagline',
+mysqli_query($conn,"UPDATE home_content SET
 
-    hero_img1 = IF('$img1'!='','$img1',hero_img1),
-    hero_img2 = IF('$img2'!='','$img2',hero_img2),
-    hero_img3 = IF('$img3'!='','$img3',hero_img3),
+hero_images='$jsonImgs',
 
-    thought_of_day='$thought',
+hero_managed='$hero_managed',
+hero_title='$hero_title',
+hero_subtitle='$hero_subtitle',
+hero_tagline='$hero_tagline',
 
-    intro_line1='$intro1',
-    intro_line2='$intro2',
+thought_of_day='$thought',
 
-    facebook_link='$fb_link',
-    instagram_link='$ig_link'
+intro_line1='$intro1',
+intro_line2='$intro2',
 
-    WHERE id=1");
+facebook_link='$fb_link',
+instagram_link='$ig_link'
+
+WHERE id=1");
+
 
     header("Location: home.php?success=1");
     exit();
@@ -258,11 +272,29 @@ placeholder="Tagline">
 
 <h3>🖼️ Hero Images</h3>
 
-<input type="file" name="hero1">
-<input type="file" name="hero2">
-<input type="file" name="hero3">
+<input type="file" name="hero_images[]" multiple accept="image/*">
+<p style="font-size:13px;color:#666">Maximum 6 images</p>
+
 
 </div>
+
+
+<?php
+$imgs = json_decode($data['hero_images'], true);
+if(!is_array($imgs)) $imgs = [];
+?>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+
+<?php foreach($imgs as $img){ ?>
+
+<img src="../../public/assets/images/<?= $img ?>"
+     style="width:120px;height:80px;object-fit:cover;border:1px solid #ccc;border-radius:6px">
+
+<?php } ?>
+
+</div>
+
 
 
 <!-- THOUGHT -->
@@ -270,7 +302,7 @@ placeholder="Tagline">
 
 <h3>💡 Thought of Day</h3>
 
-<textarea name="thought_of_day"><?= $data['thought_of_day'] ?></textarea>
+<textarea name="thought_of_day"><?= htmlspecialchars($data['thought_of_day']) ?></textarea>
 
 <!-- Preview -->
 <div class="preview-box">

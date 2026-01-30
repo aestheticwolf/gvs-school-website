@@ -506,46 +506,41 @@ AOS.init({
 });
 </script>
 
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-const hero = document.querySelector('.hero-new');
+  const hero = document.querySelector('.hero-new');
 
-const images = [
+  <?php
+  $imgs = json_decode($home['hero_images'], true);
+  if(!is_array($imgs)) $imgs = [];
+  ?>
 
-<?php if($home['hero_img1']){ ?>
-"assets/images/<?= $home['hero_img1'] ?>",
-<?php } ?>
+  const images = [
+    <?php foreach($imgs as $img){ ?>
+      "assets/images/<?= $img ?>",
+    <?php } ?>
+  ];
 
-<?php if($home['hero_img2']){ ?>
-"assets/images/<?= $home['hero_img2'] ?>",
-<?php } ?>
+  let i = 0;
 
-<?php if($home['hero_img3']){ ?>
-"assets/images/<?= $home['hero_img3'] ?>",
-<?php } ?>
+  if(images.length > 0){
 
-];
+    hero.style.backgroundImage = "url(" + images[0] + ")";
 
-let i = 0;
+    setInterval(function(){
 
-if(images.length > 0){
+      i++;
 
-hero.style.backgroundImage = "url(" + images[0] + ")";
+      if(i >= images.length){
+        i = 0;
+      }
 
-setInterval(()=>{
+      hero.style.backgroundImage = "url(" + images[i] + ")";
 
-i++;
-
-if(i >= images.length){
-i = 0;
-}
-
-hero.style.backgroundImage = "url(" + images[i] + ")";
-
-},4000);
-
-}
+    },4000);
+  }
 
 });
 </script>
