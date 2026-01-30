@@ -170,6 +170,24 @@ input,textarea{
 .success{color:green;font-weight:600;}
 .error{color:red;font-weight:600;}
 
+.preview-box{
+  background:#ffffff;
+  border:1px dashed #4f8fd8;
+  padding:15px;
+  margin-top:12px;
+  border-radius:8px;
+  font-size:14px;
+  color:#333;
+}
+
+.preview-title{
+  font-weight:600;
+  color:#143d7a;
+  margin-bottom:6px;
+  font-size:13px;
+}
+
+
 </style>
 </head>
 
