@@ -1,5 +1,6 @@
 <?php
-include "../includes/db.php";
+include __DIR__ . "/../includes/db.php";
+
 
 /* Home Content */
 $res = mysqli_query($conn,"SELECT * FROM home_content LIMIT 1");
@@ -28,6 +29,16 @@ $events = mysqli_query($conn,
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet"
  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+ <style>
+@media (max-width:768px){
+  .hero-new{
+    height:45vh !important;
+    min-height:280px !important;
+  }
+}
+</style>
+
 
 </head>
 
@@ -83,14 +94,23 @@ $events = mysqli_query($conn,
 
 <!-- HERO -->
 
-<section class="hero-new">
+<section class="hero-new"
+style="
+height:60vh;
+min-height:420px;
+max-height:650px;
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+margin-top:80px;
+">
+
 
   <div class="hero-overlay"></div>
 
   <div class="container">
 
     <div class="hero-box" data-aos="fade-up">
-
     <span class="hero-managed">
 <?= $home['hero_managed'] ?>
 </span>
