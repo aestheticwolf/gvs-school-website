@@ -218,7 +218,21 @@ placeholder="Subtitle">
 value="<?= $data['hero_tagline'] ?>"
 placeholder="Tagline">
 
+
+<!-- Preview -->
+<div class="preview-box">
+
+<div class="preview-title">Current Hero Text</div>
+
+<p><b>Managed:</b> <?= $data['hero_managed'] ?></p>
+<p><b>Title:</b> <?= $data['hero_title'] ?></p>
+<p><b>Subtitle:</b> <?= $data['hero_subtitle'] ?></p>
+<p><b>Tagline:</b> <?= $data['hero_tagline'] ?></p>
+
 </div>
+
+</div>
+
 
 
 <!-- HERO IMAGES -->
@@ -240,17 +254,34 @@ placeholder="Tagline">
 
 <textarea name="thought_of_day"><?= $data['thought_of_day'] ?></textarea>
 
+<!-- Preview -->
+<div class="preview-box">
+
+<div class="preview-title">Current Thought</div>
+
+<?= nl2br($data['thought_of_day']) ?>
+
+</div>
+
 </div>
 
 
-<!-- INTRO -->
+
+<!-- THOUGHT -->
 <div class="section-box">
 
-<h3>📘 Introduction</h3>
+<h3>💡 Thought of Day</h3>
 
-<textarea name="intro1"><?= $data['intro_line1'] ?></textarea>
+<textarea name="thought_of_day"><?= $data['thought_of_day'] ?></textarea>
 
-<textarea name="intro2"><?= $data['intro_line2'] ?></textarea>
+<!-- Preview -->
+<div class="preview-box">
+
+<div class="preview-title">Current Thought</div>
+
+<?= nl2br($data['thought_of_day']) ?>
+
+</div>
 
 </div>
 
@@ -266,7 +297,20 @@ value="<?= $data['facebook_link'] ?>">
 <input type="text" name="instagram_link"
 value="<?= $data['instagram_link'] ?>">
 
+
+
+<!-- Preview -->
+<div class="preview-box">
+
+<div class="preview-title">Current Social Links</div>
+
+<p><b>Facebook:</b> <?= $data['facebook_link'] ?></p>
+<p><b>Instagram:</b> <?= $data['instagram_link'] ?></p>
+
 </div>
+
+</div>
+
 
 
 <!-- BUTTONS -->
