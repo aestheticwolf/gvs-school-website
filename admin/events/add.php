@@ -9,31 +9,37 @@ if(!isset($_SESSION['admin_id'])){
 
 if(isset($_POST['save'])){
 
- $title = mysqli_real_escape_string($conn,$_POST['title']);
-$date  = $_POST['event_date'];
-$desc  = mysqli_real_escape_string($conn,$_POST['description']);
+  $title = mysqli_real_escape_string($conn,$_POST['title']);
+  $date  = $_POST['event_date'];
+  $desc  = mysqli_real_escape_string($conn,$_POST['description']);
 
-/* Upload Image */
-$imageName = "";
+  /* Upload Image */
+  $imageName = "";
 
-if(!empty($_FILES['image']['name'])){
+  if(!empty($_FILES['image']['name'])){
 
-    $imageName = time()."_".$_FILES['image']['name'];
+      $uploadDir = "../../public/uploads/events/";
 
-    move_uploaded_file(
-        $_FILES['image']['tmp_name'],
-        "../../public/uploads/events/".$imageName
-    );
-}
+      if(!is_dir($uploadDir)){
+          mkdir($uploadDir,0755,true);
+      }
 
-/* Insert with image */
-mysqli_query($conn,
-  "INSERT INTO events(title,event_date,description,image)
-   VALUES('$title','$date','$desc','$imageName')"
-);
+      $imageName = time()."_".$_FILES['image']['name'];
 
-header("Location: index.php");
-exit();
+      move_uploaded_file(
+          $_FILES['image']['tmp_name'],
+          $uploadDir.$imageName
+      );
+  }
+
+  /* Insert */
+  mysqli_query($conn,
+    "INSERT INTO events(title,event_date,description,image)
+     VALUES('$title','$date','$desc','$imageName')"
+  );
+
+  header("Location: index.php");
+  exit();
 }
 ?>
 
@@ -100,22 +106,11 @@ button:hover{
   color:white;
   text-decoration:none;
   font-size:14px;
-  transition:.3s;
-  cursor:pointer;
 }
 
 .btn:hover{
   background:#4f8fd8;
 }
-
-.btn-danger{
-  background:#e74c3c;
-}
-
-.btn-danger:hover{
-  background:#c0392b;
-}
-
 
 </style>
 
@@ -129,7 +124,7 @@ button:hover{
 <h2>➕ Add Event</h2>
 
 
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" id="eventForm">
 
 
 <input type="text"
@@ -144,12 +139,12 @@ button:hover{
 
 
 <textarea name="description"
-          placeholder="Event Description"
-          required></textarea>
+          id="editor"
+          placeholder="Event Description"></textarea>
 
-          <label>Event Poster / Image</label>
+
+<label>Event Poster / Image</label>
 <input type="file" name="image" accept="image/*">
-
 
 
 <button name="save">Save Event</button>
@@ -162,27 +157,27 @@ button:hover{
 
 </div>
 
+
+<!-- TinyMCE -->
 <script>
-  tinymce.init({
-    selector: 'textarea',
-    plugins: [
-      // Core editing features
-      'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-      // Your account includes a free trial of TinyMCE premium features
-      // Try the most popular premium features until Feb 11, 2026:
-      'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
-    ],
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-    tinycomments_mode: 'embedded',
-    tinycomments_author: 'Author name',
-    mergetags_list: [
-      { value: 'First.Name', title: 'First Name' },
-      { value: 'Email', title: 'Email' },
-    ],
-    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
-    uploadcare_public_key: '1c79622a59fd687714fc',
-  });
-</script> 
+tinymce.init({
+  selector: '#editor',
+  height: 200
+});
+</script>
+
+
+<!-- Validation -->
+<script>
+document.getElementById("eventForm").addEventListener("submit", function(e){
+
+  if(tinymce.get("editor").getContent().trim() === ""){
+    alert("Please enter event description");
+    e.preventDefault();
+  }
+
+});
+</script>
 
 </body>
 </html>

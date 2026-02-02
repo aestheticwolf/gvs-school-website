@@ -50,7 +50,6 @@ if(isset($_POST['save'])){
 
 <script src="https://cdn.tiny.cloud/1/pk37h5rjaeflhgojvtcu8n79yne8sof1yl6hxd0xk4mqc57j/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 
-
 <style>
 
 /* Base */
@@ -81,20 +80,6 @@ body{
   padding:20px;
 }
 
-/* Back */
-
-.back{
-  display:inline-block;
-  margin-bottom:15px;
-  color:#143d7a;
-  text-decoration:none;
-  font-weight:500;
-}
-
-.back:hover{
-  text-decoration:underline;
-}
-
 /* Card */
 
 .card{
@@ -102,8 +87,6 @@ body{
   padding:30px;
   border-radius:18px;
   box-shadow:0 10px 30px rgba(0,0,0,0.08);
-
-  animation:fadeUp .7s ease;
 }
 
 /* Labels */
@@ -127,12 +110,6 @@ select, textarea{
   font-size:14px;
 }
 
-select:focus,
-textarea:focus{
-  outline:none;
-  border-color:#4f8fd8;
-}
-
 /* Button */
 
 button{
@@ -144,12 +121,10 @@ button{
   cursor:pointer;
 
   font-size:15px;
-  transition:.3s;
 }
 
 button:hover{
   background:#4f8fd8;
-  transform:scale(1.05);
 }
 
 /* Message */
@@ -163,7 +138,6 @@ button:hover{
   font-weight:500;
 }
 
-
 /* Buttons */
 
 .btn{
@@ -174,33 +148,10 @@ button:hover{
   color:white;
   text-decoration:none;
   font-size:14px;
-  transition:.3s;
-  cursor:pointer;
 }
 
 .btn:hover{
   background:#4f8fd8;
-}
-
-.btn-danger{
-  background:#e74c3c;
-}
-
-.btn-danger:hover{
-  background:#c0392b;
-}
-
-/* Animation */
-
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(25px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
 }
 
 </style>
@@ -230,7 +181,7 @@ button:hover{
 <?php endif; ?>
 
 
-<form method="POST">
+<form method="POST" id="curriculumForm">
 
 
 <label>Select Section</label>
@@ -252,14 +203,12 @@ button:hover{
 
 <textarea name="content"
           id="editor"
-          placeholder="Enter curriculum details here..."
-          required></textarea>
+          placeholder="Enter curriculum details here..."></textarea>
 
 
 <button type="submit" name="save">
 Save Curriculum
 </button>
-
 
 </form>
 
@@ -267,26 +216,25 @@ Save Curriculum
 
 </div>
 
+
 <script>
-  tinymce.init({
-    selector: 'textarea',
-    plugins: [
-      // Core editing features
-      'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-      // Your account includes a free trial of TinyMCE premium features
-      // Try the most popular premium features until Feb 11, 2026:
-      'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
-    ],
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-    tinycomments_mode: 'embedded',
-    tinycomments_author: 'Author name',
-    mergetags_list: [
-      { value: 'First.Name', title: 'First Name' },
-      { value: 'Email', title: 'Email' },
-    ],
-    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
-    uploadcare_public_key: '1c79622a59fd687714fc',
-  });
+tinymce.init({
+  selector: '#editor',
+  height: 250
+});
+</script>
+
+
+<!-- FORM VALIDATION -->
+<script>
+document.getElementById("curriculumForm").addEventListener("submit", function(e){
+
+  if(tinymce.get("editor").getContent().trim() === ""){
+    alert("Please enter curriculum content");
+    e.preventDefault();
+  }
+
+});
 </script>
 
 

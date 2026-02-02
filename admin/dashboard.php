@@ -223,7 +223,6 @@ body{
     <a href="curriculum/">📚 Curriculum</a>
     <a href="staff/">👩‍🏫 Staff</a>
     <a href="events/">📅 Events</a>
-    <a href="pages/">📄 Pages</a>
     <a href="about/">ℹ️ About Page</a>
 
 

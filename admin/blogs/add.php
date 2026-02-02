@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 
         move_uploaded_file(
             $_FILES['image']['tmp_name'],
-            "../../public/uploads/blogs/".$imageName
+            $_SERVER['DOCUMENT_ROOT']."/public/uploads/blogs/".$imageName
         );
     }
 
@@ -38,6 +38,7 @@ if (isset($_POST['submit'])) {
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -219,11 +220,7 @@ button:hover{
 <label>Content</label>
 
 <textarea name="content"
-          id="editor"
-          required></textarea>
-
-
-<label>Blog Image</label>
+          id="editor"></textarea><label>Blog Image</label>
 
 <input type="file"
        name="image"
@@ -253,6 +250,18 @@ button:hover{
 <button type="submit" name="submit">
 Save Blog
 </button>
+
+<script>
+document.querySelector("form").addEventListener("submit", function(e){
+
+  if(tinymce.get("editor").getContent().trim() === ""){
+    alert("Please enter blog content");
+    e.preventDefault();
+  }
+
+});
+</script>
+
 
 </form>
 
